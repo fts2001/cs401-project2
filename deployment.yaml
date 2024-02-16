@@ -5,7 +5,6 @@ metadata:
   labels:
     app: project2-tf118
 spec:
-  restartPolicy: OnFailure
   replicas: 3
   selector:
     matchLabels:
@@ -34,6 +33,7 @@ spec:
         env:
         - name: DATASET_PATH
           value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
+      restartPolicy: OnFailure
       volumes:
       - name: ml-volume
         persistentVolumeClaim:
