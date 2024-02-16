@@ -5,6 +5,7 @@ metadata:
   labels:
     app: project2-tf118
 spec:
+  restartPolicy: OnFailure
   replicas: 3
   selector:
     matchLabels:
