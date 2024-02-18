@@ -2,8 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: project2-tf118-job
-  labels:
-    app: project2-tf118
 spec:
   template:
     spec:
