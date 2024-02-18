@@ -1,3 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: project2-tf118-job
+  labels:
+    app: project2-tf118
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: project2-tf118-playlist-recommender
+        image: quay.io/ftianshu/playlist-recommender:0.1.4
+        volumeMounts:
+        - mountPath: "/ml"
+          name: ml-volume
+        env:
+        - name: DATASET_PATH
+          value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
+      volumes:
+      - name: ml-volume
+        persistentVolumeClaim:
+          claimName: ml-pvc
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +40,7 @@ spec:
     spec:
       containers:
       - name: project2-tf118-flask-server
-        image: quay.io/ftianshu/flask-server:0.1.2
+        image: quay.io/ftianshu/flask-server:0.1.3
         ports:
         - containerPort: 5000
         volumeMounts:
@@ -33,7 +57,6 @@ spec:
         env:
         - name: DATASET_PATH
           value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
-      restartPolicy: OnFailure
       volumes:
       - name: ml-volume
         persistentVolumeClaim:
