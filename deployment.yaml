@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: project2-tf118-job-3
+  name: project2-tf118-job-4
 spec:
   template:
     spec:
       restartPolicy: OnFailure
       containers:
       - name: project2-tf118-playlist-recommender
-        image: quay.io/ftianshu/playlist-recommender:0.1.5
+        image: quay.io/ftianshu/playlist-recommender:0.1.6
         volumeMounts:
         - mountPath: "/ml"
           name: ml-volume
