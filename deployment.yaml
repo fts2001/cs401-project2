@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: project2-tf118-job-4
+  name: project2-tf118-job-5
 spec:
   template:
     spec:
@@ -14,7 +14,7 @@ spec:
           name: ml-volume
         env:
         - name: DATASET_PATH
-          value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds2.csv"
+          value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
       volumes:
       - name: ml-volume
         persistentVolumeClaim:
