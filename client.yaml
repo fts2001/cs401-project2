@@ -5,7 +5,7 @@ metadata:
   labels:
     app: project2-tf118
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: project2-tf118
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: project2-tf118-flask-client
-        image: quay.io/ftianshu/flask-client:0.1.2
+        image: quay.io/ftianshu/flask-client:0.1.3
         ports:
         - containerPort: 5000
         env:
