@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project2-tf118-client
+  labels:
+    app: project2-tf118
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project2-tf118
+  template:
+    metadata:
+      labels:
+        app: project2-tf118
+    spec:
+      containers:
+      - name: project2-tf118-flask-client
+        image: quay.io/ftianshu/flask-client:0.1.2
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT
+          value: "5000"
+      imagePullSecrets:
+      - name: quay-registry-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project2-tf118-client-service
+spec:
+  selector:
+    app: project2-tf118
+  ports:
+  - protocol: TCP
+    port: 62005
+    targetPort: 5000
